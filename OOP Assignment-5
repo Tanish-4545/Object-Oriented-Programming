@@ -1,0 +1,81 @@
+OOP Assignment-5
+Tanish Moro                                                                        
+B24CE1073 SE-2
+
+/* Geometrical Shapes Area calculator Define the base class Shape with two data members of any numeric type that are employed to compute the area of respective shape. Add member
+functions to input the data members values and display the area in base class only. Derive two classes from base class namely, Triangle &amp; Rectangle.Take the display function as virtual in base class and redefine it in the derived classes. Using above classes , write a program to accept parameters for triangle or rectangle and display the area Using Virtual Functions*/
+//8.9.25
+
+#include <iostream>
+using namespace std;
+class shape
+{
+protected:
+	float x, y, result;
+public:
+	void input()
+	{
+		cout<<"Enter the base: ";
+		cin>>x;
+		cout<<"Enter the height: ";
+		cin>>y;
+	}
+	virtual void display()
+	{
+		cout<<"Base"<<endl;
+		cout<<"Area of the shape is: "<<result<<endl;
+	}
+	virtual void calculate()
+	{}
+};
+class triangle : public shape
+{
+public:
+	void calculate()
+	{
+		result=0.5*x*y;
+	}
+	void display()
+	{
+		cout<<"Derived"<<endl;
+		cout<<"Area of Triangle: "<<result<<endl;
+	}
+};
+class rectangle : public shape
+{
+	void calculate()
+	{
+		result=x*y;
+	}
+	void display()
+	{
+		cout<<"Derived"<<endl;
+		cout<<"Area of Rectangle is: "<<result<<endl;
+	}
+};
+int main()
+{
+	shape *tr;
+	triangle t1;
+	tr=&t1;
+	tr->input();
+	tr->calculate();
+	tr->display();
+	rectangle r1;
+	tr=&r1;
+	tr->input();
+	tr->calculate();
+	tr->display();
+	return 0;
+}
+
+Output:
+Enter the base: 10
+Enter the height: 2
+Derived
+Area of Triangle: 10
+Enter the base: 2
+Enter the height: 3
+Derived
+Area of Rectangle is: 6
+
