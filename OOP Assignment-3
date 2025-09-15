@@ -1,0 +1,153 @@
+OOP Assignment-3
+Tanish Moro                                                                            
+B24CE1073 SE-2
+
+/* Design an educational Institution that maintains a database of all staff members where the database is segregated into a number of classes having hierarchical relationships. Define all classes with suitable data members and required member functions to build the database and fetch individual details .*/
+//11.8.25
+
+#include<iostream>
+#include<string>
+using namespace std;
+class staff
+{
+protected:
+	string name,dept;
+	int id;
+public:
+	void accept();
+	void display();
+};
+class teacher:public staff
+{
+	string subject;
+	int xp;
+public:
+	void accept1();
+	void display1();
+};
+class help:public staff
+{
+	string expert;
+public:
+	void accept2();
+	void display2();
+};
+void staff::accept()
+{
+	cout<<"Enter your name: ";
+	cin>>name;
+	cout<<"\nEnter your ID: ";
+	cin>>id;
+	cout<<"\nEnter department: ";
+	cin>>dept;
+}
+void staff::display()
+{
+	cout<<"Name: "<<name<<endl;
+	cout<<"ID: "<<id<<endl;
+	cout<<"Department: "<<dept<<endl;
+}
+void teacher::accept1()
+{
+	cout<<"***Teaching Staff***"<<endl;
+	accept();
+	cout<<"\nEnter your subject: ";
+	cin>>subject;
+	cout<<"\nEnter your Experience in years: ";
+	cin>>xp;
+}
+void teacher::display1()
+{
+	cout<<"***Teaching Staff***"<<endl;
+	cout<<"\n\n";
+	display();
+	cout<<"Subject: "<<subject<<endl;
+	cout<<"Experience: "<<xp<<endl;
+}
+void help::accept2()
+{
+	cout<<"***Support Staff***"<<endl;
+	accept();
+	cout<<"\nEnter expertise: ";
+	cin>>expert;
+}
+void help::display2()
+{
+	cout<<"***Support Staff***"<<endl;
+	cout<<"\n\n";
+	display();
+	cout<<"Expertise: "<<expert<<endl;
+}
+int main()
+{
+	int n,m;
+	cout<<"Enter no. of teaching staff:";
+	cin>>n;
+	teacher obj1[n];
+	for (int i=0;i<n;i++)
+	{
+		obj1[i].accept1();
+	}
+	for (int k=0;k<n;k++)
+	{
+		obj1[k].display1();
+	}
+	cout<<"Enter no. of support staff:";
+	cin>>m;
+	help obj2[m];
+	for (int j=0;j<m;j++)
+	{
+		obj2[j].accept2();
+	}
+	for (int l=0;l<m;l++)
+	{
+		obj2[l].display2();
+	}
+	return 0;
+}
+
+
+Output:
+Enter no. of teaching staff:2
+
+***Teaching Staff***
+Enter your name: Tanish
+Enter your ID: 1073
+Enter department: CE
+Enter your subject: OOP
+Enter your Experience in years: 2
+
+***Teaching Staff***
+Enter your name: ABC
+Enter your ID: 45
+Enter department: CE
+Enter your subject: DS
+Enter your Experience in years: 21
+
+***Teaching Staff***
+Name: Tanish
+ID: 1073
+Department: CE
+Subject: OOP
+Experience: 2
+***Teaching Staff***
+Name: ABC
+ID: 45
+Department: CE
+Subject: DS
+Experience: 21
+
+Enter no. of support staff:1
+
+***Support Staff***
+Enter your name: XYZ
+Enter your ID: 264
+Enter department: CE
+Enter expertise: Events
+
+***Support Staff***
+Name: XYZ
+ID: 264
+Department: CE
+Expertise: Events
+
