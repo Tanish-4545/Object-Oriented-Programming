@@ -1,0 +1,130 @@
+OOP Assignment-1
+Tanish Moro
+B24CE1073
+CE-2
+
+Operations on Bank Account
+Implement a class to illustrate working of a bank account of a
+customer that consists of following members Data members:
+i. Name of the customer
+ii. Account Type
+iii. Account Number
+iv. Available balance amount in the account
+Member Functions:
+i. Assign initial values using constructors.
+ii. Deposit an amount in account
+iii. Withdraw an amount
+iv. Display account details
+
+Program:
+#include<iostream>
+#include<string.h>
+using namespace std;
+class bank_acc
+{
+private:
+	string name;
+	string acc_type;
+	int acc_number;
+	float balance;
+public:
+	bank_acc(string n, string at, int an, float bal)
+	{
+		name=n;
+		acc_type=at;
+		acc_number=an;
+		balance=bal;
+	}
+	void deposit(void);
+	void withdraw(void);
+	void display(void);
+};
+void bank_acc::deposit()
+{
+	 int deposit;
+	 cout<<"Enter amount to be deposited"<<endl;
+	 cin>>deposit;
+	 balance+=deposit;
+	 cout<<"Amount deposited, balance is:"<<balance<<endl;
+}
+void bank_acc::withdraw()
+{
+	int withdraw;
+	cout<<"Enter amount to withdraw: ";
+	cin>>withdraw;
+	balance-=withdraw;
+	cout<<"\n Balance: "<<balance;
+}
+void bank_acc::display()
+{
+	 cout<<"\n Name: "<<name;
+	 cout<<"\n Account type: "<<acc_type;
+	 cout<<"\n Account number: "<<acc_number;
+	 cout<<"\n Balance: "<<balance;
+}
+int main()
+{
+	 string n, at;
+	 int an;
+	 float bal;
+	 cout<<"***Welcome to ABC Bank***"<<endl;
+	 cout<<"Please Enter your credentials:"<<endl;
+	 cout<<"Enter name: "<<endl;
+	 cin>>n;
+	 cout<<"Enter account type: "<<endl;
+	 cin>>at;
+	 cout<<"Enter account number"<<endl;
+	 cin>>an;
+	 cout<<"Enter balance"<<endl;
+	 cin>>bal;
+	 int choice;
+	 char ch;
+	 bank_acc obj1(n,at,an,bal);
+	 do{
+		 cout<<"Do you wish to: \n 1.Deposit \n 2.Withdraw \n 3.View Details"<<endl;
+		 cin>>choice;
+		 switch(choice) {
+		 case 1:
+			 obj1.deposit();
+			 obj1.display();
+			 cout<<"\n Do you wish to continue? (Y/N)";
+			 cin>>ch;
+			 break;
+		 case 2:
+			 obj1.withdraw();
+			 obj1.display();
+			 cout<<"\n Do you wish to continue? (Y/N)";
+			 cin>>ch;
+			 break;
+		 case 3:
+			 obj1.display();
+			 cout<<"\n Do you wish to continue? (Y/N)";
+			 cin>>ch;
+			 break;
+		 default:
+			 cout<<"\n Please enter a valid number."<<endl;
+			 break;}
+	    }while (ch=='Y'||ch=='y');
+	 cout<<"\n Thank you for transacting with us!";
+}
+
+Output:
+***Welcome to ABC Bank***
+Please Enter your credentials:
+Enter name: Tanish
+Enter account type: Savings
+Enter account number: 264
+Enter balance: 10000
+Do you wish to: 
+ 1.Deposit 
+ 2.Withdraw 
+ 3.View Details
+1
+Enter amount to be deposited: 100
+Amount deposited, balance is: 10100
+ Name: Tanish
+ Account type: Savings
+ Account number: 264
+ Balance: 10100
+ Do you wish to continue? (Y/N)n
+ Thank you for transacting with us!
