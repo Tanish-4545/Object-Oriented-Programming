@@ -1,0 +1,84 @@
+OOP Assignment-4
+Tanish Moro                          
+B24CE1073 SE-2
+
+/* Implement a class Complex which represents the Complex Number. Implement the following functions Using Operator Overloading: 1. Constructors ( Include all constructor types) 2. Overload operator + to add two complex numbers using member function 3. Overload operator * to multiply two complex numbers using friend function 4. Overload operators << and >> to output and accept Complex Numbers .*/
+//18.8.25
+
+#include <iostream>
+using namespace std;
+class complex
+{
+	float real,imag;
+public:
+/*	complex()              //default constructor
+	{
+		real=0;
+		imag=0;
+	}
+	complex(float a, float b)      //parameterized constructor
+	{
+		real=a;
+		imag=b;
+	}  */
+	complex operator+ (complex c)
+	{
+		complex temp;
+		temp.real = real + c.real;
+		temp.imag = imag + c.imag;
+		return temp;
+	}
+	friend complex operator* (complex m,complex n);
+	friend istream &operator >>(istream&, complex&);
+	friend ostream &operator <<(ostream&, complex&);
+/*	void display()
+	{
+		cout<<"\nComplex number is: "<<real<<"+"<<imag<<"i";
+	}  */
+};
+complex operator* (complex m,complex n)
+{
+	complex temp;
+	temp.real = (n.real * m.real)-(n.imag * m.imag);
+	temp.imag = (n.real * m.imag)+(n.imag * m.real);
+	return temp;
+}
+istream &operator >> (istream&in, complex &obj)
+{
+	cout<<"Enter real no. :";
+	in>>obj.real;
+	cout<<"Enter imaginary number: ";
+	in>>obj.imag;
+	return in;
+}
+ostream &operator << (ostream&out, complex&obj)
+{
+	cout<<"\n";
+	cout<<obj.real<<" + ";
+	cout<<obj.imag<<"i";
+	return out;
+}
+int main()
+{
+	complex C1,C2,C3;
+	cin>>C1;
+	cin>>C2;
+	C3=C2+C1;
+	cout<<C1;
+	cout<<C2;
+	cout<<C3;
+	C3=C2*C1;
+	cout<<C3;
+	return 0;
+}
+
+Output:
+Enter real no. :2
+Enter imaginary number: 3
+Enter real no. :1
+Enter imaginary number: 4
+2 + 3i
+1 + 4i
+3 + 7i
+-10 + 11i
+
