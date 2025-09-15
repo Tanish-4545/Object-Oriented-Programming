@@ -1,0 +1,170 @@
+OOP Assignment-2
+Tanish Moro                  
+ B24CE1073  CE-2
+/*Develop a program in C++ to create a database of an employee's information system containing the following fields: Name, employee ID, Department, Date of Joining, Contact address, Telephone number etc. Construct the database with suitable member functions to accept and print employee details. Make use of constructor types, destructor, static members, inline function and dynamic memory allocation using operators-new and delete*/
+//28.7.2025
+#include<iostream>
+#include<string.h>
+using namespace std;
+class employee
+{
+private:
+        	string name, dept, address;
+        	int empid, date, month, year, number;
+        	static int count;
+public:
+        	employee()
+        	{
+                    	cout<<"Employee Default"<<endl;
+                    	name="Tanish";
+                    	empid=45;
+                    	dept="Computer";
+                    	date=01;
+                    	month=01;
+                    	year=2001;
+                    	address="Pune";
+                    	number=45264;
+        	}
+        	employee(string n,int id, string dpt,  int dt,int mth,int yr, string add, int num)
+        	{
+                    	cout<<"Employee para"<<endl;
+                    	name=n;
+                    	empid=id;
+                    	dept=dpt;
+                    	date=dt;
+                    	month=mth;
+                    	year=yr;
+                    	address=add;
+                    	number=num;
+        	}
+        	employee(employee &obj)
+        	{
+                    	cout<<"Employee copy"<<endl;
+                    	name=obj.name;
+                    	empid=obj.empid;
+                    	dept=obj.dept;
+                    	date=obj.date;
+                    	month=obj.month;
+                    	year=obj.year;
+                    	address=obj.address;
+                    	number=obj.number;
+        	}
+        	inline void enter()
+        	{
+                    	cout<<"Employee details are:"<<endl;
+        	}
+                    	void display(void)
+        	{
+                    	count++;
+                    	cout<<"Name: "<<name<<endl;
+                    	cout<<"ID: "<<empid<<endl;
+                    	cout<<"Department: "<<dept<<endl;
+                    	cout<<"Joining: "<<date<<"/"<<month<<"/"<<year<<endl;
+                    	cout<<"Address: "<<address<<endl;
+                    	cout<<"Number: "<<number<<endl;
+        	}
+        	static void showcount(void)
+        	{
+                    	cout<<"Count: "<<count;
+        	}
+        	~employee()
+        	{
+                    	cout<<"\n  Data Erased for "<<name<<endl;
+                    	count--;
+                    	cout<<"Count: "<<count;
+        	}
+};
+int employee::count;
+int main()
+{
+        	string n, dpt, add;
+        	int id, dt, mth, yr, num;
+        	cout<<"Name: ";
+        	cin>>n;
+        	cout<<"Employee ID: ";
+        	cin>>id;
+        	cout<<"Department: ";
+        	cin>>dpt;
+        	cout<<"Date of Joining (dd/mm/yyyy): ";
+        	cin>>dt;
+        	cin>>mth;
+        	cin>>yr;
+        	cout<<"Address: ";
+        	cin>>add;
+        	cout<<"Number: ";
+        	cin>>num;
+        	employee obj2;
+        	obj2.enter();
+        	obj2.display();
+        	cout<<"\n";
+        	employee obj1(n,id,dpt,dt,mth,yr,add,num);
+        	obj1.enter();
+        	obj1.display();
+        	cout<<"\n";
+        	employee obj3(obj1);
+        	obj3.enter();
+        	obj3.display();
+        	cout<<"\n";
+        	cout<<"New Dynamic object"<<endl;
+        	employee *ptr =new employee("TM",264,"CE",11,05,2024,"India",9822);
+        	ptr->enter();
+        	ptr->display();
+        	employee::showcount();
+        	delete ptr;
+        	return 0;
+}
+ 
+Output:
+Name: T
+Employee ID: 1073
+Department: CE
+Date of Joining (dd/mm/yyyy): 28 7 2025
+Address: MMCOE
+Number: 9322
+ 
+Employee Default
+Employee details are:
+Name: Tanish
+ID: 45
+Department: Computer
+Joining: 1/1/2001
+Address: Pune
+Number: 45264
+ 
+Employee para
+Employee details are:
+Name: T
+ID: 1073
+Department: CE
+Joining: 28/7/2025
+Address: MMCOE
+Number: 9322
+ 
+Employee copy
+Employee details are:
+Name: T
+ID: 1073
+Department: CE
+Joining: 28/7/2025
+Address: MMCOE
+Number: 9322
+  
+New Dynamic object
+Employee para
+Employee details are:
+Name: TM
+ID: 264
+Department: CE
+Joining: 11/5/2024
+Address: India
+Number: 9822
+ 
+Count: 4
+ Data Erased for TM
+Count: 3
+ Data Erased for T
+Count: 2
+ Data Erased for T
+Count: 1
+ Data Erased for Tanish
+Count: 0
