@@ -1,0 +1,44 @@
+Tanish Moro                                     
+B24CE1073 SE-2
+
+/* Exception Handling Design a program with the following functionalities:
+1. A function to read two numbers(Double type)
+2. A function to calculate division of these two numbers
+3. A try block to detect and throw an exception when divide by zero condition occurs
+4. Appropriate catch block to handle the exception thrown */       //26.9.25
+
+#include <iostream>
+using namespace std;
+class Divide
+{
+private: double a,b;
+public: void accept();
+void calculate();
+};
+void Divide::accept()
+{
+	cout<<"\nEnter dividend: ";
+	cin>>a;
+	cout<<"\nEnter divisor: ";
+	cin>>b;
+}
+void Divide::calculate()
+{
+	try
+	{
+		if (b!=0)
+			cout<<"Division is: "<<a/b<<endl;
+		else
+			throw b;
+	}
+	catch (double b)
+	{
+		cout<<"\nException: Division by zero!";
+	}
+}
+int main()
+{
+	Divide obj;
+	obj.accept();
+	obj.calculate();
+}
